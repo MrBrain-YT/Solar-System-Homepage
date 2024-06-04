@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Solar Sustem Homapage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="images/site_icon.png">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.164.1/three.module.js",
+            "OrbitControls": "https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/controls/OrbitControls.js",
+            "GLTFLoader": "https://unpkg.com/three@0.154.0/examples/jsm/loaders/GLTFLoader.js",
+            "EffectComposer": "https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/postprocessing/EffectComposer.js",
+            "RenderPass": "https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/postprocessing/RenderPass.js",
+            "ShaderPass": "https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/postprocessing/ShaderPass.js",
+            "OutlinePass": "https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/postprocessing/OutlinePass.js",
+            "OutputPass": "https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/postprocessing/OutputPass.js",
+            "FXAAShader": "https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/shaders/FXAAShader.js",
+            "model-viewer": "https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"
+          }
+        }
+    </script>
+    <meta content="width=640, initial-scale=0.47, maximum-scale=1.0, user-scalable=1" name="viewport">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+    <homepage-settings planets_list="true" planet_info="true" controls="true" news="true" info="true"></homepage-settings>
+</head>
+
+<body>
+    <!-- PLANETS LIST -->
+    <div>
+        <div id="planets_list" onclick="showPlanetList()" onmousemove="stop_prop(event)">
+            <h1 id="planets_list_text" >All planets list</h1>
+            <div id="planets_list_wrapper"></div>
+            <div id="arrow_up_planet_list">⇧</div>
+        </div>
+    </div>
+
+    <!-- PLANET INFO -->
+    <div id="planet_info" onmousemove="stop_prop(event)">
+        <div id="current_image_planet">
+            <model-viewer id="curren_planet_model" disable-pan oncontextmenu="return false;" disable-zoom src="models/sun.glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="0"></model-viewer>
+        </div>
+        <div id="current_name_planet"></div>
+        <div id="current_description_planet"><div id="text_wraper"></div></div>
+        <div id="to_url_project_planet"></div>
+    </div>
+
+    <!-- CONTROLS INFO -->
+    <div id="controls_block_info" onclick="showControls(event)" onmousemove="stop_prop(event)">
+        <div id="controls_text">Controls</div>
+        <!-- <div id="controls_border_line"></div> -->
+        <div id="controls_info_block_list">
+            <div id="control_item">
+                <div id="control_image" class="control_image_type" style="--image-url: url('controls_images/right_click.png')"></div>
+                <div id="control_description"><div id="text_wraper" class="controls_text_wrapper">To select a planet, click on it with the left mouse button. To deselect the planet, double-click on it.</div></div>
+            </div>
+            <div id="control_item">
+                <div id="control_image" class="control_image_type" style="--image-url: url('controls_images/move_mouse.png')"></div>
+                <div id="control_description"><div id="text_wraper" class="controls_text_wrapper">To navigate through the Solar System, hold down the left mouse button and move the cursor. Use the mouse wheel to zoom in and out.</div></div>
+            </div>
+            <div id="control_item">
+                <div id="control_image" class="control_button_type"><div id="controls_button_text_wrapper">Q</div></div>
+                <div id="control_description"><div id="text_wraper" class="controls_text_wrapper">The Q key is used to select the previous news item on the news tab.</div></div>
+            </div>
+            <div id="control_item">
+                <div id="control_image" class="control_button_type"><div id="controls_button_text_wrapper">E</div></div>
+                <div id="control_description"><div id="text_wraper" class="controls_text_wrapper">The E key is used to select the next news item on the news tab.</div></div>
+            </div>
+            <div id="control_item">
+                <div id="control_image" class="control_button_type"><div id="controls_button_text_wrapper">Esc</div></div>
+                <div id="control_description"><div id="text_wraper" class="controls_text_wrapper">The Escape key is used to deselect the planet.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEWS INFO -->
+    <div id="news_block" onclick="stop_prop(event)" onmousemove="stop_prop(event)">
+        <div id="news_text_general">News</div>
+        <div id="news_item_block">
+            <div id="news_image" onclick="goToURL()"></div>
+        </div>
+        <div class="arrows prev" onclick="back_news()">Q</div>
+        <div class="arrows next"onclick="next_news()">E</div>
+        <div id="news_count_block">
+            <div id="one_news_item" class="enabled_news_item" src="news_images/created_update.png" href="#"></div>
+        </div>
+    </div>
+
+    <!-- SITE INFO -->
+    <div id="site_info_block_button" onclick="show_site_info(event)">i</div>
+
+    <div id="site_info_block" onclick="stop_prop(event)" onmousemove="stop_prop(event)">
+        <div id="general_text_site_info">Info</div>
+        <div id="close_site_info" onclick="closeInfo()">✖</div>
+        <div id="site_info_block_wrapper">
+            <div id="project_name">Solar system homepage</div>
+            <br>
+            <div id="project_description">3D home page for any websites in space style<br>Project license: MIT</div>
+            <div id="project_image"></div>
+            <div id="project_creator">Project created by MrBrain</div>
+            <a id="github_link" href="https://github.com/MrBrain-YT"></a>
+            <a id="telegram_link" href="https://t.me/Mrbrain_off"></a>
+            <div id="project_repo_text">Project repository</div>
+            <a id="project_github_link" href="https://github.com/MrBrain-YT/Solar-System-Homepage"></a>
+        </div>
+        <div id="version_site_info">v-1.0.0</div>
+    </div>
+
+    <script>
+        let is_show_planet_info = false;
+
+        //INIT UI VISIBLE
+        let settins_visible_block = document.getElementsByTagName("homepage-settings")[0];
+        console.log(settins_visible_block.getAttribute("news"))
+        if (settins_visible_block.getAttribute("planets_list") == "true"){
+            document.getElementById("planets_list").style.display = "block";
+        }else{
+            document.getElementById("planets_list").style.display = "none";
+        }
+
+        if (settins_visible_block.getAttribute("planet_info") == "true"){
+            is_show_planet_info = true;
+        }else{
+            is_show_planet_info = false;
+        }
+
+        if (settins_visible_block.getAttribute("controls") == "true"){
+            document.getElementById("controls_block_info").style.display = "block";
+        }else{
+            document.getElementById("controls_block_info").style.display = "none";
+            document.getElementById("site_info_block_button").style.right = "0px";
+        }
+
+        if (settins_visible_block.getAttribute("news") == "true"){
+            document.getElementById("news_block").style.display = "block";
+        }else{
+            document.getElementById("news_block").style.display = "none";
+        }
+
+        if (settins_visible_block.getAttribute("info") == "true"){
+            document.getElementById("site_info_block_button").style.display = "block";
+        }else{
+            document.getElementById("site_info_block_button").style.display = "none";
+            document.getElementById("controls_block_info").style.borderTopLeftRadius = "16px";
+        }
+
+        
+
+
+        let current_mews_item_index = 0;
+
+        let news_items = document.getElementById("one_news_item");
+        const NewsItems = document.querySelectorAll("#one_news_item");
+        const NewsItemCount = NewsItems.length;
+        NewsItems.forEach(item => {
+            item.style.top = `${((280 - (15 * NewsItemCount)) / 2)}px`;
+        })
+        
+        let news_url = NewsItems[0].getAttribute("href");
+
+        let image_url = NewsItems[current_mews_item_index].getAttribute("src");
+        document.getElementById("news_image").style.backgroundImage = `url(${image_url})`;
+
+        function goToURL() {
+            if (news_url != ""){
+                window.location.href = news_url;
+            }
+        }
+
+        function stop_prop(event) {
+            event.stopPropagation();
+        }
+
+        function next_news(){
+            NewsItems[current_mews_item_index].classList.toggle("enabled_news_item");
+            if (current_mews_item_index == NewsItemCount - 1){
+                current_mews_item_index = 0;
+            }else{
+                current_mews_item_index += 1;
+            }
+            NewsItems[current_mews_item_index].classList.toggle("enabled_news_item");
+            news_url = NewsItems[current_mews_item_index].getAttribute("href");
+            let image_url = NewsItems[current_mews_item_index].getAttribute("src");
+            document.getElementById("news_image").style.backgroundImage = `url(${image_url})`;
+        }
+
+        function back_news(){
+            NewsItems[current_mews_item_index].classList.toggle("enabled_news_item")
+            if (current_mews_item_index == 0){
+                current_mews_item_index = NewsItemCount - 1;
+            }else{
+                current_mews_item_index -= 1;
+            }
+            NewsItems[current_mews_item_index].classList.toggle("enabled_news_item")
+            news_url = NewsItems[current_mews_item_index].getAttribute("href");
+            let image_url = NewsItems[current_mews_item_index].getAttribute("src");
+            document.getElementById("news_image").style.backgroundImage = `url(${image_url})`;
+        }
+
+        function showPlanetList() { 
+            let planets_list = document.getElementById("planets_list");
+            let planets_list_wrapper = document.getElementById("planets_list_wrapper");
+            let arrow_up_planet_list = document.getElementById("arrow_up_planet_list");
+            planets_list.classList.toggle("enabled_planet_list");
+            planets_list_wrapper.classList.toggle("planets_list_wrapper_enabled");
+            arrow_up_planet_list.classList.toggle("planets_list_wrapper_enabled");
+        }
+
+        function showControls(event) {
+            const controlsBlockInfo = document.getElementById("controls_block_info");
+            const controlsInfoBlockList = document.getElementById("controls_info_block_list");
+            const controlItems = document.querySelectorAll("#control_item");
+          
+            controlsBlockInfo.classList.toggle("enabled_controls_block_info");
+            if (controlsBlockInfo.style.borderTopLeftRadius == "16px"){
+                controlsBlockInfo.style.borderTopLeftRadius = "0px";
+            }else{
+                controlsBlockInfo.style.borderTopLeftRadius = "16px";
+            }
+            controlsInfoBlockList.classList.toggle("enabled_controls_info_block_list");
+          
+            const itemCount = controlItems.length;
+            let itemHeight = Math.max(70, Math.min(100, 353 / itemCount));
+            controlItems.forEach(item => {
+              item.style.height = `${itemHeight}px`;
+              item.style.setProperty("--hex-parent-height", `${itemHeight}px`);
+            });
+            stop_prop(event);
+        }
+
+        function show_site_info(event) {
+            document.getElementById("site_info_block").classList.add("enabled_site_info_block");
+            document.getElementsByTagName("canvas")[0].style.pointerEvents = "none";
+            stop_prop(event);
+        }
+
+        function closeInfo() {
+            document.getElementById("site_info_block").classList.remove("enabled_site_info_block");
+            document.getElementsByTagName("canvas")[0].style.pointerEvents = "auto";
+        }
+        
+
+    </script>
+    <script type="module" src="index.js"></script>
+</body>
+</html>

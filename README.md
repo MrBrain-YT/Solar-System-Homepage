@@ -105,8 +105,15 @@ The solar system is configured in the `index.js` file. In this project, the sun 
 To contribute to this project, you can:
 
 -  Use this website in your project
--  Share an example of its use on your website
--  Rate this project with a star.
+-  Share an example of its use on your website to discussions
+-  Rate this project with a star
+
+## Example
+
+You can find an example of using this project on these sites:
+
+- Website created on [github](https://mrbrain-yt.github.io/Solar-System-Homepage/)
+- Redesigned [site](https://iot-projects.ru/)
 
 ## Resources used
 

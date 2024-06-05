@@ -17,6 +17,7 @@ let planets_model_data = {};
 let planets_name_data_dict = {};
 let planets_desription_data = {};
 let planets_go_text_data = {};
+let planets_href_data = {};
 let planets_name_data = [];
 let nebulae = [];
 
@@ -141,6 +142,7 @@ function onMouseClick(event) {
             document.getElementById("current_name_planet").innerHTML = "Sun";
             document.getElementById("current_description_planet").querySelector('#text_wraper').innerHTML = "Sun";
             document.getElementById("to_url_project_planet").innerHTML = "Go to sun";
+            planet_url = "#"
             current_target = selectedObject;
             return 0;
         }
@@ -160,11 +162,13 @@ function onMouseClick(event) {
                         document.getElementById("current_name_planet").innerHTML = planets_name_data_dict[local_current_target.name];
                         document.getElementById("current_description_planet").querySelector('#text_wraper').innerHTML = planets_desription_data[local_current_target.name];
                         document.getElementById("to_url_project_planet").innerHTML = planets_go_text_data[local_current_target.name];
+                        planet_url = planets_href_data[local_current_target.name]
                     }else {
                         document.getElementById("curren_planet_model").setAttribute("src", planets_model_data["Saturn001"]);
                         document.getElementById("current_name_planet").innerHTML = planets_name_data_dict["Saturn001"];
                         document.getElementById("current_description_planet").querySelector('#text_wraper').innerHTML = planets_desription_data["Saturn001"];
                         document.getElementById("to_url_project_planet").innerHTML = planets_go_text_data["Saturn001"];
+                        planet_url = planets_href_data["Saturn001"]
                         
                     }
                     
@@ -225,7 +229,7 @@ function init() {
         <div id="image_planet"><model-viewer id="planet_model" disable-pan oncontextmenu="return false;" disable-zoom src="`+ SunModelPath +`" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="0"></model-viewer></div>
         <div id="name_planet">`+ "Sun" +`</div>
         <div id="description_planet"><div id="text_wraper">`+ "Sun" +`</div></div>
-        <a id="go_to_project_button" href="#">`+ "Go to sun" +`</a>
+        <div id="go_to_project_button" onclick="goToOtherURL('` + "#" + `')">`+ "Go to sun" +`</div>
     </div>`;
 
 
@@ -270,6 +274,7 @@ function init() {
             planets_name_data_dict[planet_data.three_name] = planet_data.name;
             planets_desription_data[planet_data.three_name] = planet_data.description;
             planets_go_text_data[planet_data.three_name] = planet_data.go_text;
+            planets_href_data[planet_data.three_name] = planet_data.href;
             planets.push(model);
             
         });
@@ -278,7 +283,7 @@ function init() {
                 <div id="image_planet"><model-viewer id="planet_model" disable-pan oncontextmenu="return false;" disable-zoom src="`+ planet_data.model +`" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="0"></model-viewer></div>
                 <div id="name_planet">`+ planet_data.name +`</div>
                 <div id="description_planet"><div id="text_wraper">`+ planet_data.description +`</div></div>
-                <a id="go_to_project_button" href="`+ planet_data.href +`">`+ planet_data.go_text +`</a>
+                <div id="go_to_project_button" onclick="goToOtherURL('`+ planet_data.href +`')">`+ planet_data.go_text +`</div>
             </div>`;
     }
     

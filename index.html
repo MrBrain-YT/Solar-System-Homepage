@@ -43,7 +43,7 @@
         </div>
         <div id="current_name_planet"></div>
         <div id="current_description_planet"><div id="text_wraper"></div></div>
-        <div id="to_url_project_planet"></div>
+        <div id="to_url_project_planet" onclick="GoToPlanetURL()"></div>
     </div>
 
     <!-- CONTROLS INFO -->
@@ -158,6 +158,7 @@
         })
         
         let news_url = NewsItems[0].getAttribute("href");
+        let planet_url = "";
 
         let image_url = NewsItems[current_mews_item_index].getAttribute("src");
         document.getElementById("news_image").style.backgroundImage = `url(${image_url})`;
@@ -166,6 +167,16 @@
             if (news_url != ""){
                 window.location.href = news_url;
             }
+        }
+
+        function GoToPlanetURL() {
+            if (planet_url != ""){
+                window.location.href = planet_url;
+            }
+        }
+
+        function goToOtherURL(url) {
+                window.location.href = url;
         }
 
         function stop_prop(event) {

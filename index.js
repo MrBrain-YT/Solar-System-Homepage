@@ -225,20 +225,20 @@ function init() {
         <div id="image_planet"><model-viewer id="planet_model" disable-pan oncontextmenu="return false;" disable-zoom src="`+ SunModelPath +`" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="0"></model-viewer></div>
         <div id="name_planet">`+ "Sun" +`</div>
         <div id="description_planet"><div id="text_wraper">`+ "Sun" +`</div></div>
-        <div id="go_to_project_button">`+ "Go to sun" +`</div>
+        <a id="go_to_project_button" href="#">`+ "Go to sun" +`</a>
     </div>`;
 
 
     // Планеты
     const planetData = [
-        { name: 'Mercury', scale: 0.003, distance: 10, width: 32, height: 32, speed: 0.0010, model: "models/mercury.glb", three_name: "Cube008", description:"test", go_text:"go"},
-        { name: 'Venus', scale: 0.0045, distance: 18, width: 32, height: 32, speed: 0.0009, model: "models/venus.glb", three_name: "cylindrically_mapped_sphereMesh", description:"test", go_text:"go"},
-        { name: 'Earth', scale: 0.005, distance: 25, width: 32, height: 32, speed: 0.0008, model: "models/earth.glb", three_name: "Cube001", description:"test", go_text:"go"},
-        { name: 'Mars', scale: 0.004, distance: 32, width: 32, height: 32, speed: 0.0007, model: "models/mars.glb", three_name: "mars", description:"test", go_text:"go"},
-        { name: 'Jupiter', scale: 0.012, distance: 42, width: 32, height: 32, speed: 0.0006, model: "models/jupiter.glb", three_name: "cubemap", description:"test", go_text:"go"},
-        { name: 'Saturn', scale: 0.009, distance: 61, width: 32, height: 32, speed: 0.0005, model: "models/saturn.glb", three_name: "Saturn001", description:"test", go_text:"go"},
-        { name: 'Uranium', scale: 0.006, distance: 77, width: 27, height: 32, speed: 0.0004, model: "models/uranus.glb", three_name: "Uranus", description:"test", go_text:"go"},
-        { name: 'Neptune', scale: 0.009, distance: 90, width: 32, height: 32, speed: 0.0003, model: "models/neptune.glb", three_name: "Neptune", description:"test", go_text:"go"}
+        { name: 'Mercury', scale: 0.003, distance: 10, width: 32, height: 32, speed: 0.0010, model: "models/mercury.glb", three_name: "Cube008", description:"test", go_text:"go", href:"#"},
+        { name: 'Venus', scale: 0.0045, distance: 18, width: 32, height: 32, speed: 0.0009, model: "models/venus.glb", three_name: "cylindrically_mapped_sphereMesh", description:"test", go_text:"go", href:"#"},
+        { name: 'Earth', scale: 0.005, distance: 25, width: 32, height: 32, speed: 0.0008, model: "models/earth.glb", three_name: "Cube001", description:"test", go_text:"go", href:"#"},
+        { name: 'Mars', scale: 0.004, distance: 32, width: 32, height: 32, speed: 0.0007, model: "models/mars.glb", three_name: "mars", description:"test", go_text:"go", href:"#"},
+        { name: 'Jupiter', scale: 0.012, distance: 42, width: 32, height: 32, speed: 0.0006, model: "models/jupiter.glb", three_name: "cubemap", description:"test", go_text:"go", href:"#"},
+        { name: 'Saturn', scale: 0.009, distance: 61, width: 32, height: 32, speed: 0.0005, model: "models/saturn.glb", three_name: "Saturn001", description:"test", go_text:"go", href:"#"},
+        { name: 'Uranium', scale: 0.006, distance: 77, width: 27, height: 32, speed: 0.0004, model: "models/uranus.glb", three_name: "Uranus", description:"test", go_text:"go", href:"#"},
+        { name: 'Neptune', scale: 0.009, distance: 90, width: 32, height: 32, speed: 0.0003, model: "models/neptune.glb", three_name: "Neptune", description:"test", go_text:"go", href:"#"}
     ];
 
     let planet_list = document.getElementById("planets_list_wrapper");
@@ -278,7 +278,7 @@ function init() {
                 <div id="image_planet"><model-viewer id="planet_model" disable-pan oncontextmenu="return false;" disable-zoom src="`+ planet_data.model +`" ar ar-modes="webxr scene-viewer quick-look" camera-controls shadow-intensity="0"></model-viewer></div>
                 <div id="name_planet">`+ planet_data.name +`</div>
                 <div id="description_planet"><div id="text_wraper">`+ planet_data.description +`</div></div>
-                <div id="go_to_project_button">`+ planet_data.go_text +`</div>
+                <a id="go_to_project_button" href="`+ planet_data.href +`">`+ planet_data.go_text +`</a>
             </div>`;
     }
     
